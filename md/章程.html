@@ -1,0 +1,997 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+
+
+/* ============================================
+ * ============ TYPORA lATEX THEME ============
+ * ============================================
+ * This project is based on the work of yfzhao20 and du33169,
+   whose repositories are addressed on
+   <https://github.com/yfzhao20/Typora-markdown> and
+   <https://github.com/du33169/typora-theme-essay_cn>,
+   many thanks to them.
+ * Typora LaTeX Theme (Markdown LaTeX Theme)
+   is a CSS theme mainly used as a component of Typora,
+   which is designed for Chinese university students
+   used in LaTeX-styled essays and reports.
+ * Copyright (C) 2021 Keldos;
+ * Repository Address: <https://github.com/Keldos-Li/typora-latex-theme>;
+ * Licensed Under GPL v3.0, SEE <https://github.com/Keldos-Li/typora-latex-theme/blob/main/LICENSE>
+ */
+/* As a special exception, you may create a larger work
+   that contains part or all of the Typora LaTeX Theme
+   and distribute that work under terms of your choice,
+   so long as that work isn't itself a CSS theme
+   or can be processed into CSS theme by using some
+   CSS pre-processors like SASS. Alternatively, if you
+   modify or redistribute this CSS theme itself,
+   you may (at your option) remove this special exception,
+   which will cause the CSS theme and the resulting output files
+   to be licensed under the GNU General Public License
+   without this special exception.
+ */
+:root {
+  /* == 字体设置 == */
+  /* 基准字体 */
+  /* 备选：Times, "Times New Roman" */
+  --base-Latin-font: "思源黑体";
+  --base-Chinese-font: "思源黑体";
+  --base-font-size: 9.5pt;
+  /* 引言字体 */
+  --quote-font: "思源黑体";
+  /* 这里字体用了10pt,比正文字体稍大 */
+  --quote-font-size: 10pt;
+  /* 代码字体（代码中的中文会调用 ui-font） */
+  --code-font: "Monaco", "Consolas";
+  /* 侧边栏字体 */
+  --ui-font: "思源黑体";
+  /* source mode 字体 */
+  /* 默认调用 code-font 和 ui-font */
+  --sourceMode-font: "SF Mono", "思源黑体";
+  /* 目录字体 */
+  /* 默认调用 base-font */
+  --toc-font: "";
+  /* 默认调用 base-font-size */
+  --toc-font-size: "";
+  /* 表格字体 */
+  /* 默认调用 heading-font */
+  --table-title-font: "";
+  /* 默认调用 base-font */
+  --table-font: "";
+  /* 标题字体（总设置） */
+  /* 注意，如果您使用macOS系统并更改了英文字体，请在此处更换标题英文字体粗体字重的postscript值 */
+  --heading-Latin-font: "思源黑体";
+  --heading-Chinese-font: "思源黑体";
+  /* 标题字体分别设置 */
+  /* 大标题（h1）字体 */
+  --title-Chinese-font: "思源黑体";
+  --title-font-size: 18pt;
+  /* h2字体 */
+  --h2-Chinese-font: "思源黑体";
+  --h2-font-size: 14pt;
+  /* h3字体 */
+  --h3-Chinese-font: "思源黑体";
+  --h3-font-size: 12pt;
+  /* h4字体 */
+  --h4-Chinese-font: "思源黑体";
+  --h4-font-size: 10pt;
+  /* h5字体 */
+  --h5-Chinese-font: "思源黑体";
+  --h5-font-size: 10pt;
+  /* h6字体 */
+  --h6-Chinese-font: "思源黑体";
+  --h6-font-size: 9.5pt;
+  /* 粗体样式设置 */
+  /* 加粗风格时使用的字重；400等同于 normal，700等同于 bold，900等同于 heavy */
+  --strong-weight: 900;
+  /* 基础行距 */
+  --base-line-height: 16pt;
+  /* == 页面设置 == */
+  /* 打印页边距 */
+  --set-margin: 1.8cm 2cm 1.2cm 2cm !important;
+  /* == 控制设置 == */
+  /* 目录中是否显示一级标题 */
+  --toc-show-title: none;
+  /* == 颜色设置 == */
+  /* 超链接颜色 */
+  --link-color-light: #2E67D3;
+  --link-color-dark: #8bb1f9;
+}
+
+/* ========== VERY IMPORTANT 请注意看下面的几行: ================
+   如果您需要在输出PDF时隐藏超链接的颜色和下划线，请取消注释下面的代码块，即删去下面的 Ln.1 和 Ln.2
+   如果您需要在输出PDF时保持超链接的显示效果，则不用更改 ============= */
+/* 如要取消注释代码，请把本行删去 Ln.1
+
+@media print {
+  #write a {
+    color: inherit !important;
+    text-decoration: none;
+  } 
+}
+
+如要取消注释代码，请把本行删去 Ln.2 */
+body {
+  padding: 0 !important;
+  margin: 0 !important;
+  line-height: var(--base-line-height);
+  font-family: "思源黑体";
+  /* font-weight: 900; */
+  /* text-indent: 2em; */
+  /* counter-reset: tableHead 0 imgHead 0; */
+}
+
+strong {
+  font-weight: var(--strong-weight);
+}
+
+@media screen {
+  #write {
+    padding: var(--set-margin);
+    /* 添加一个淡蓝色的边框 */
+    /* border: 0.8px solid #AAC ; */
+    /* 页边阴影 */
+    box-shadow: 0 0 24px 12px #cccccc;
+  }
+}
+
+@media print {
+  #write {
+    padding: 0 !important;
+  }
+
+  @page {
+    margin: 1.8cm 2cm 1.2cm 2cm !important;
+    /* 页边距 */
+  }
+}
+
+/* 正文区基本属性 */
+#write {
+  font-family: var(--base-Latin-font), var(--base-Chinese-font), serif;
+  font-size: var(--base-font-size);
+  /* A4标准宽度 */
+  max-width: 21cm;
+  background-color: white;
+  /* column-count: 2;
+    column-gap: 25px;
+    column-width: 8cm; 
+    display: inline-block; */
+  /* 这里可以试分栏的，但确实不适合实现 */
+  counter-reset: h2 0 h3 0 h4 0 h5 0 h6 0;
+}
+
+#write p {
+  text-align: left;
+}
+
+#write a {
+  color: var(--link-color-light);
+}
+
+#write h1,
+#write h2,
+#write h3,
+#write h4,
+#write h5,
+#write h6 {
+  font-weight: normal;
+  /* 标题字体 */
+  font-family: var(--heading-Latin-font), var(--heading-Chinese-font), serif;
+  page-break-after: avoid !important;
+}
+
+#write h1 {
+  font-family: var(--heading-Latin-font), var(--title-Chinese-font), serif;
+  font-weight: normal;
+  text-align: center;
+  column-span: all;
+  font-size: var(--title-font-size);
+  font-weight: 700;
+}
+
+#write h2 {
+  font-family: var(--heading-Latin-font), var(--h2-Chinese-font), serif;
+  font-size: var(--h2-font-size);
+  font-weight: 700;
+}
+
+#write h3 {
+  font-family: var(--heading-Latin-font), var(--h3-Chinese-font), serif;
+  font-size: var(--h3-font-size);
+  line-height: var(--h3-font-size);
+}
+
+#write h4 {
+  font-family: var(--heading-Latin-font), var(--h4-Chinese-font), serif;
+  font-size: var(--h4-font-size);
+  line-height: var(--h4-font-size);
+}
+
+#write h5 {
+  font-family: var(--heading-Latin-font), var(--h5-Chinese-font), serif;
+  font-size: var(--h5-font-size);
+  line-height: var(--h5-font-size);
+}
+
+#write h6 {
+  font-family: var(--heading-Latin-font), var(--h6-Chinese-font), serif;
+  font-size: var(--h6-font-size);
+  /* 没有写错，为了避免行距太小才这么写 */
+  line-height: var(--h5-font-size);
+}
+
+#write table {
+  /* 三线表第一条线宽度 */
+  border-top: 1.2pt solid;
+  /* 三线表第二条线宽度 */
+  border-bottom: 1.2pt solid;
+  font-family: var(--table-font), var(--base-Latin-font), var(--base-Chinese-font), serif;
+  /* font-size: var(--base-font-size); */
+  text-align: center;
+  page-break-inside: avoid;
+  border-spacing: 6px;
+  /* 自动布局表格宽度，如果有时内容太紧建议直接加空格吧，我自己看不惯和页面等宽的大表格 */
+  width: auto;
+  /* 使表格默认居中；虽然这个代码不好，但好像没别的实现办法 */
+  margin: 0 auto;
+}
+
+#write table td {
+  padding: 2px;
+}
+
+#write table tr {
+  padding: 2px;
+}
+
+#write th {
+  padding: 0px 6px;
+}
+
+#write thead {
+  /* 表格标题（首行）样式 */
+  /* 三线表表头的线 */
+  border-bottom: 0.5pt solid;
+  font-family: var(--table-title-font), var(--heading-Latin-font), var(--heading-Chinese-font), serif !important;
+  /* font-size: var(--base-font-size); */
+  font-weight: var(--strong-weight);
+}
+
+#write .CodeMirror-wrap {
+  padding: 10px;
+}
+
+#write .CodeMirror-code pre {
+  font-family: var(--code-font), var(--ui-font), monospace;
+  line-height: 120%;
+}
+
+#write h1 {
+  counter-reset: h2;
+}
+
+#write h2 {
+  counter-reset: h3;
+}
+
+#write h3 {
+  counter-reset: h4;
+}
+
+#write h4 {
+  counter-reset: h5;
+}
+
+#write h5 {
+  counter-reset: h6;
+}
+
+/*
+#write figure:after{
+  counter-increment: tableHead;
+  content: "表" counter(tableHead) " ";
+  text-align:center;
+  width:100%;
+  display:inline-block;
+}*/
+/* 图片，导出PDF时暂时无法显示 */
+/*
+#write .md-image:after{
+  counter-increment: imgHead;
+  content: "图" counter(imgHead) " ";
+  text-align:center;
+  width:100%;
+  display:inline-block;
+}
+*/
+/* basic 样式采用一般的引言，具有左边框、左缩进 */
+blockquote {
+  font-style: normal;
+  font-family: var(--quote-font), var(--base-Latin-font), var(--base-Chinese-font), -apple-system, serif;
+  font-size: var(--quote-font-size);
+  /* 文字离左边框的距离 */
+  padding-left: 16px;
+  padding-right: 20pt;
+  /* 左边框离页面边的距离 */
+  margin-left: 20px;
+}
+
+hr {
+  border-top: solid 0.7px #eee;
+}
+
+img {
+  /* 避免图片在导出时被断开 */
+  page-break-inside: avoid;
+}
+
+/* ============ 多级列表样式 ============ */
+ul {
+  /* 无序列表第一级：实心圆点 */
+  list-style: disc;
+}
+
+ul ul {
+  /*list-style: circle;*/
+  /* 请勿删除“–”后的空格, 他们对缩进有一定影响, 下同 */
+  list-style: "–　 ";
+  /*left: -0.8rem;*/
+}
+
+ul ul ul {
+  /* 无序列表第三极：小圈 */
+  list-style: "◦　";
+  left: 0.1rem;
+}
+
+ol {
+  /* 有序列表第一级：数字 */
+  list-style: decimal;
+}
+
+ol ol {
+  counter-reset: liist;
+  list-style: none;
+}
+
+ol ol li {
+  counter-increment: liist;
+  position: relative;
+}
+
+ol ol li::before {
+  /* 有序列表第二级：括号加小写字母 */
+  content: "(" counter(liist, lower-alpha) ")　　";
+  position: absolute;
+  margin-right: 2rem;
+  left: -2.4rem;
+}
+
+ol ol ol {
+  counter-reset: liiist;
+  list-style: none;
+  margin: 0;
+}
+
+ol ol ol li {
+  counter-increment: liiist;
+  position: relative;
+}
+
+ol ol ol li::before {
+  /* 有序列表第三级：小写罗马数字 */
+  content: counter(liiist, lower-roman) ".　　";
+  align-self: flex-end;
+  position: absolute;
+  left: -3rem;
+  /* -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;*/
+  /* 为了让项目编号是重新用句点对齐而不是左对齐 */
+  width: 4.2rem;
+  text-align: right;
+}
+
+li {
+  position: relative;
+}
+
+/* ============ 多级列表样式END ============ */
+/* 行内代码 */
+code {
+  font-family: var(--code-font), var(--ui-font), monospace;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code,
+p code,
+li code {
+  color: #111111;
+  background-color: #fefefe;
+
+  font-family: var(--code-font), var(--ui-font), monospace;
+  box-sizing: border-box;
+  border-right: 0px;
+  /* border-style: solid; */
+  margin: 0 0px 0 0px;
+  padding: 0 1px 0 1px;
+  /* 圆角 */
+  /* border-radius: 2px 2px 2px 2px; */
+}
+
+/* typora 编写模式 */
+#typora-source {
+  font-family: var(--sourceMode-font), var(--code-font), var(--ui-font), monospace;
+  line-height: 2rem;
+}
+
+#write h2:before {
+  counter-increment: h2;
+  content: counter(h2);
+  margin-right: 2rem;
+}
+
+#write h3:before,
+h3.md-focus.md-heading:before {
+  counter-increment: h3;
+  content: counter(h2) "." counter(h3);
+  margin-right: 2rem;
+}
+
+#write h4:before,
+h4.md-focus.md-heading:before {
+  counter-increment: h4;
+  content: counter(h2) "." counter(h3) "." counter(h4);
+  margin-right: 2rem;
+}
+
+#write h5:before,
+h5.md-focus.md-heading:before {
+  counter-increment: h5;
+  content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5);
+  margin-right: 2rem;
+}
+
+#write h6:before,
+h6.md-focus.md-heading:before {
+  counter-increment: h6;
+  content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6);
+  margin-right: 2rem;
+}
+
+.footnotes-area .footnote-line {
+  color: var(--text-color);
+  font-size: var(--base-font-size);
+}
+
+.footnotes-area hr {
+  border: 0;
+  color: #00000000;
+}
+
+/* 目录 */
+.md-toc-content {
+  margin-left: 2em;
+  /* 修复缺失上级标题时无法递增 */
+  counter-reset: toc-h2 toc-h3 toc-h4;
+  page-break-after: always;
+}
+
+.md-toc-inner {
+  margin-left: 0 !important;
+  color: var(--text-color) !important;
+}
+
+.md-toc-item {
+  color: var(--text-color) !important;
+}
+
+/* 目录标题内容属性 */
+.md-toc-h2,
+.md-toc-h3,
+.md-toc-h4,
+.md-toc-h5,
+.md-toc-h6 {
+  font-size: var(--toc-font-size);
+  font-family: var(--toc-font), var(--base-Latin-font), var(--base-Chinese-font), serif;
+}
+
+.md-toc-h2 {
+  font-weight: var(--strong-weight);
+}
+
+/* 目录标题前 */
+.md-toc-content .md-toc-h1 {
+  display: var(--toc-show-title);
+  counter-reset: toc-h2;
+}
+
+.md-toc-content .md-toc-h2 {
+  counter-reset: toc-h3;
+}
+
+.md-toc-content .md-toc-h3 {
+  counter-reset: toc-h4;
+}
+
+.md-toc-content .md-toc-h4 {
+  counter-reset: toc-h5;
+}
+
+.md-toc-content .md-toc-h5 {
+  counter-reset: toc-h6;
+}
+
+.md-toc-content .md-toc-h2:before {
+  counter-increment: toc-h2;
+  content: counter(toc-h2);
+  margin-right: 1rem;
+  font-weight: var(--strong-weight);
+}
+
+.md-toc-content .md-toc-h3:before {
+  counter-increment: toc-h3;
+  content: counter(toc-h2) "." counter(toc-h3);
+  margin-left: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.md-toc-content .md-toc-h4:before {
+  counter-increment: toc-h4;
+  content: counter(toc-h2) "." counter(toc-h3) "." counter(toc-h4);
+  margin-left: 3.5rem;
+  margin-right: 0.5rem;
+}
+
+.md-toc-content .md-toc-h5:before {
+  counter-increment: toc-h5;
+  content: counter(toc-h2) "." counter(toc-h3) "." counter(toc-h4) "." counter(toc-h5);
+  margin-left: 5.5rem;
+  margin-right: 0.5rem;
+}
+
+.md-toc-content .md-toc-h6:before {
+  counter-increment: toc-h6;
+  content: counter(toc-h2) "." counter(toc-h3) "." counter(toc-h4) "." counter(toc-h5) "." counter(toc-h6);
+  margin-left: 7.5rem;
+  margin-right: 0.5rem;
+}
+
+/* 侧边大纲标题 */
+.sidebar-content .outline-h1 {
+  counter-reset: outline-h2;
+}
+
+.sidebar-content .outline-h2 {
+  counter-reset: outline-h3;
+}
+
+.sidebar-content .outline-h2 .outline-label:before {
+  counter-increment: outline-h2;
+  content: counter(outline-h2) " ";
+}
+
+.sidebar-content .outline-h3 {
+  counter-reset: outline-h4;
+}
+
+.sidebar-content .outline-h3 .outline-label:before {
+  counter-increment: outline-h3;
+  content: counter(outline-h2) "." counter(outline-h3) "  ";
+}
+
+.sidebar-content .outline-h4 {
+  counter-reset: outline-h5;
+}
+
+.sidebar-content .outline-h4 .outline-label:before {
+  counter-increment: outline-h4;
+  content: counter(outline-h2) "." counter(outline-h3) "." counter(outline-h4) "  ";
+}
+
+.sidebar-content .outline-h5 {
+  counter-reset: outline-h6;
+}
+
+.sidebar-content .outline-h5 .outline-label:before {
+  counter-increment: outline-h5;
+  content: counter(outline-h2) "." counter(outline-h3) "." counter(outline-h4) "." counter(outline-h5) "  ";
+}
+
+.sidebar-content {
+  /* 侧边栏的字体修改 */
+  font-family: var(--ui-font);
+  list-style: none;
+}
+
+/* 元数据（如 YAML front matter）的背景框 */
+pre.md-meta-block {
+  background: #cccccc;
+  padding: 1.4em;
+  font-family: var(--code-font), var(--ui-font), monospace;
+}
+
+#write>h3.md-focus:before,
+#write>h4.md-focus:before,
+#write>h5.md-focus:before,
+#write>h6.md-focus:before,
+h3.md-focus:before,
+h4.md-focus:before,
+h5.md-focus:before,
+h6.md-focus:before {
+  color: inherit;
+  border: inherit;
+  border-radius: inherit;
+  position: inherit;
+  left: initial;
+  float: none;
+  top: initial;
+  font-size: inherit;
+  padding-left: inherit;
+  padding-right: inherit;
+  vertical-align: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+							stroke-width: 0;
+						}
+</style><title>章程</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h1 id='华南师范大学软件协会章程'><span>华南师范大学软件协会章程</span></h1><center>Articles of association &amp; By-laws 1<sup>st</sup> edition</center><div style="page-break-after:always;"></div><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n0"><a class="md-toc-inner" href="#华南师范大学软件协会章程">华南师范大学软件协会章程</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n7"><a class="md-toc-inner" href="#第一章-协会总则">第一章 协会总则</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n8"><a class="md-toc-inner" href="#第一条-关于协会">第一条 关于协会</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n10"><a class="md-toc-inner" href="#第二条-协会宗旨">第二条 协会宗旨</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n21"><a class="md-toc-inner" href="#第二章-协会会员">第二章 协会会员</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n22"><a class="md-toc-inner" href="#第三条-加入协会">第三条 加入协会</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n24"><a class="md-toc-inner" href="#第四条-退出协会">第四条 退出协会</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n26"><a class="md-toc-inner" href="#第五条-指导教师">第五条 指导教师</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n28"><a class="md-toc-inner" href="#第六条-核心会员">第六条 核心会员</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n30"><a class="md-toc-inner" href="#第三章-组织管理">第三章 组织管理</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n31"><a class="md-toc-inner" href="#第七条-管理制度">第七条 管理制度</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n33"><a class="md-toc-inner" href="#第八条-会员代表大会">第八条 会员代表大会</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n35"><a class="md-toc-inner" href="#第九条-召开大会的要求">第九条 召开大会的要求</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n37"><a class="md-toc-inner" href="#第十条-会员代表的职责">第十条 会员代表的职责</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n52"><a class="md-toc-inner" href="#第十一条-委员会组织结构">第十一条 委员会组织结构</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n80"><a class="md-toc-inner" href="#第十二条-委员会下属机构">第十二条 委员会下属机构</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n141"><a class="md-toc-inner" href="#第十三条-委员会的权利和义务">第十三条 委员会的权利和义务</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n156"><a class="md-toc-inner" href="#第十四条-实习工作人员">第十四条 实习工作人员</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n179"><a class="md-toc-inner" href="#第十五条-协会下属组织">第十五条 协会下属组织</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n192"><a class="md-toc-inner" href="#第四章-财务制度">第四章 财务制度</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n193"><a class="md-toc-inner" href="#第十六条-财务政策">第十六条 财务政策</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n205"><a class="md-toc-inner" href="#第十七条-经费来源">第十七条 经费来源</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n220"><a class="md-toc-inner" href="#第十八条-经费运用">第十八条 经费运用</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n231"><a class="md-toc-inner" href="#第十九条-财务报告">第十九条 财务报告</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n233"><a class="md-toc-inner" href="#第五章-协会章程">第五章 协会章程</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n234"><a class="md-toc-inner" href="#第二十条-协会章程修改">第二十条 协会章程修改</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n236"><a class="md-toc-inner" href="#第二十一条-遵守协会章程">第二十一条 遵守协会章程</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n238"><a class="md-toc-inner" href="#第六章-终止程序">第六章 终止程序</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n239"><a class="md-toc-inner" href="#第二十二条-终止条件">第二十二条 终止条件</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n241"><a class="md-toc-inner" href="#第二十三条-终止后财产处理">第二十三条 终止后财产处理</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n243"><a class="md-toc-inner" href="#第七章-附则">第七章 附则</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n244"><a class="md-toc-inner" href="#第二十四条-会员投稿">第二十四条 会员投稿</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n246"><a class="md-toc-inner" href="#第二十五条-关于章程">第二十五条 关于章程</a></span></p></div><div style="page-break-after:always;"></div><h2 id='第一章-协会总则'><span>第一章 协会总则</span></h2><h3 id='第一条-关于协会'><span>第一条 关于协会</span></h3><p><span>华南师范大学软件协会（下简称“软件协会”“软协”“协会”或“SoCoding”），是由华南师大学生中的软硬件技术爱好者自发组建的，接受校党委的领导和校团委、软件学院的指导，以技术和兴趣为导向的自由学术组织。</span></p><h3 id='第二条-协会宗旨'><span>第二条 协会宗旨</span></h3><p><span>软件协会的宗旨是：</span></p><ol start='' ><li><span>以服务在校师生为根本，以回馈开源社区为愿景，为开源事业的发展作出贡献；</span></li><li><span>关注前沿的计算机软硬件和互联网相关行业，探索相关技术，并输出内容；</span></li><li><span>营造优秀的计算机软硬件学术氛围，为爱好者提供交流和学习的平台。</span></li></ol><h2 id='第二章-协会会员'><span>第二章 协会会员</span></h2><h3 id='第三条-加入协会'><span>第三条 加入协会</span></h3><p><span>凡赞成本章程，对软件协会有一定了解并有志于推动协会发展的华南师范大学在校学生，向协会委员会任意一个成员提出申请、提交有效身份信息和联系方式后，即可成为协会会员。</span></p><h3 id='第四条-退出协会'><span>第四条 退出协会</span></h3><p><span>会员毕业或退学后，自动失去会员资格，会员也可向任意一个委员会成员提出申请后退会。严重违反协会相关规定，或受到学校、学院处分的会员，协会委员会有权利在公告后撤销其会员资格。</span></p><h3 id='第五条-指导教师'><span>第五条 指导教师</span></h3><p><span>协会指导教师是协会的特殊成员，协会委员会按照学校相关规定联系和申请指导教师。指导教师不能在协会委员会任职，但享有学校相关规定赋予的权利和义务。</span></p><h3 id='第六条-核心会员'><span>第六条 核心会员</span></h3><p><span>协会核心会员是在委员会领导下，参与协会管理、发展和执行工作的协会会员。加入技术部、运营部或信宣部可成为核心会员；协会委员会成员自动成为核心会员；协会下属组织的相关负责人属于核心会员。</span></p><h2 id='第三章-组织管理'><span>第三章 组织管理</span></h2><h3 id='第七条-管理制度'><span>第七条 管理制度</span></h3><p><span>协会的组织原则是民主集中制。会员代表大会是协会的最高权力机构；委员会在会员代表大会委托下代为行使大会的部分职权；技术部、运营部和信宣部在委员会的领导下进行协会的管理和运营工作。</span></p><h3 id='第八条-会员代表大会'><span>第八条 会员代表大会</span></h3><p><span>凡协会会员均有权利组织召开会员代表大会，其次，由委员会负责召开。召开会员大会前，召集人应当知会协会委员会，并由委员会通过邮件、社交群、网站等途径发布公告。</span></p><h3 id='第九条-召开大会的要求'><span>第九条 召开大会的要求</span></h3><p><span>召开会员代表大会时，到场会员代表应不少于 </span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 1000 688" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.05ex;"><defs><path id="MJX-17-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path id="MJX-17-TEX-N-35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><use data-c="31" xlink:href="#MJX-17-TEX-N-31"></use><use data-c="35" xlink:href="#MJX-17-TEX-N-35" transform="translate(500,0)"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>15</mn></math></mjx-assistive-mml></mjx-container><script type="math/tex">15</script><span> 人，且至少有一个非核心会员和一个核心会员。不符合上述规定的会员代表大会无效。 会员代表大会每学年至少召开一次。</span></p><h3 id='第十条-会员代表的职责'><span>第十条 会员代表的职责</span></h3><p><span>凡参加会员代表大会的会员均自动成为会员代表大会代表。会员代表大会中的每一个代表均有以下职责：</span></p><ol start='' ><li><span>审议会员资格；</span></li><li><span>选举和罢免委员会成员；</span></li><li><span>制定和修改协会章程；</span></li><li><span>决定协会的活动方针和任务；</span></li><li><span>决定其他重大事项。 </span></li></ol><p><span>会员代表大会闭会期间，由大会选举产生的委员会代为行使职权。</span></p><h3 id='第十一条-委员会组织结构'><span>第十一条 委员会组织结构</span></h3><p><span>委员会设会长一名、副会长一至三名，负责协会日常事务；设协会发展小组（发展组）成员一至三名，负责协会发展和协会下属组织的管理。委员会对会员代表大会负责。委员会会长任期一年，一般不得连任，特殊情况下最多可连任一届。</span></p><figure><table><thead><tr><th style='text-align:center;' ><span>代号</span></th><th><span>职务名</span></th><th><span>所属</span></th><th><span>人数</span></th><th style='text-align:left;' ><span>相关事务举例</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><strong><code>CEO</code></strong></td><td><span>会长</span></td><td><span>委员会</span></td><td><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="1.131ex" height="1.507ex" role="img" focusable="false" viewBox="0 -666 500 666" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: 0px;"><defs><path id="MJX-18-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><use data-c="31" xlink:href="#MJX-18-TEX-N-31"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>1</mn></math></mjx-assistive-mml></mjx-container><script type="math/tex">1</script></td><td style='text-align:left;' ><span>负责协会与校团委联系和任务交接、监管协会事务</span></td></tr><tr><td style='text-align:center;' ><strong><code>XEO</code></strong></td><td><span>副会长</span></td><td><span>委员会</span></td><td><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="3.394ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 1500 688" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.05ex;"><defs><path id="MJX-20-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path id="MJX-20-TEX-N-7E" d="M179 251Q164 251 151 245T131 234T111 215L97 227L83 238Q83 239 95 253T121 283T142 304Q165 318 187 318T253 300T320 282Q335 282 348 288T368 299T388 318L402 306L416 295Q375 236 344 222Q330 215 313 215Q292 215 248 233T179 251Z"></path><path id="MJX-20-TEX-N-33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><use data-c="31" xlink:href="#MJX-20-TEX-N-31"></use></g><g data-mml-node="mtext" transform="translate(500,0)"><use data-c="7E" xlink:href="#MJX-20-TEX-N-7E"></use></g><g data-mml-node="mn" transform="translate(1000,0)"><use data-c="33" xlink:href="#MJX-20-TEX-N-33"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>1</mn><mtext>~</mtext><mn>3</mn></math></mjx-assistive-mml></mjx-container><script type="math/tex">1\textasciitilde 3</script></td><td style='text-align:left;' ><span>负责联系、领导、协助、传递和交接协会下属机构</span></td></tr><tr><td style='text-align:center;' ><strong><code>XSO</code></strong></td><td><span>战略官</span></td><td><span>委员会</span></td><td><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="3.394ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 1500 688" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.05ex;"><defs><path id="MJX-20-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path id="MJX-20-TEX-N-7E" d="M179 251Q164 251 151 245T131 234T111 215L97 227L83 238Q83 239 95 253T121 283T142 304Q165 318 187 318T253 300T320 282Q335 282 348 288T368 299T388 318L402 306L416 295Q375 236 344 222Q330 215 313 215Q292 215 248 233T179 251Z"></path><path id="MJX-20-TEX-N-33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><use data-c="31" xlink:href="#MJX-20-TEX-N-31"></use></g><g data-mml-node="mtext" transform="translate(500,0)"><use data-c="7E" xlink:href="#MJX-20-TEX-N-7E"></use></g><g data-mml-node="mn" transform="translate(1000,0)"><use data-c="33" xlink:href="#MJX-20-TEX-N-33"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>1</mn><mtext>~</mtext><mn>3</mn></math></mjx-assistive-mml></mjx-container><script type="math/tex">1\textasciitilde 3</script></td><td style='text-align:left;' ><span>负责协会整体发展、多方合作、监管协会下属组织</span></td></tr></tbody></table></figure><p><span>其中 XSO 可以由 CEO 或 XEO 兼任。</span></p><h3 id='第十二条-委员会下属机构'><span>第十二条 委员会下属机构</span></h3><p><span>委员会下属机构是委员会的一部分。委员会下设技术部、运营部和信宣部。</span></p><ul><li><strong><span>技术部</span></strong><span>  负责维护和开发协会所管理的服务器和其他软硬件设施，开发和实现新的软件需求、举办技术相关技术分享和培训；</span></li><li><strong><span>运营部</span></strong><span>  负责计划和开展协会日常活动、校企合作，以及管理协会资产和人资等；</span></li><li><strong><span>信宣部</span></strong><span>  负责记录协会相关活动、摄影摄像、新闻稿、公众号推文、宣传片、海报、协会招新和其他宣传物料。</span></li></ul><p><span>技术部、运营部和信宣部包含若干执行人员，负责具体的管理事务。运营部有权利根据实需要从协会会员中选拔技术人员，并有权根据工作表现罢免和调整执行人员。</span></p><p><span>技术部、运营部和信宣部包含以下执行人员，并负责相关事务。</span></p><figure><table><thead><tr><th style='text-align:center;' ><span>代号</span></th><th><span>职务名</span></th><th><span>所属</span></th><th><span>人数</span></th><th style='text-align:left;' ><span>相关事务举例</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><strong><code>CTO</code></strong></td><td><span>技术</span></td><td><span>技术部</span></td><td><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="1.131ex" height="1.507ex" role="img" focusable="false" viewBox="0 -666 500 666" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: 0px;"><defs><path id="MJX-21-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><use data-c="32" xlink:href="#MJX-21-TEX-N-32"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>2</mn></math></mjx-assistive-mml></mjx-container><script type="math/tex">2</script></td><td style='text-align:left;' ><span>领导技术部；负责协会软硬件相关技术和设施搭建与维护</span></td></tr><tr><td style='text-align:center;' ><strong><code>CIO</code></strong></td><td><span>信息</span></td><td><span>技术部</span></td><td><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="3.394ex" height="1.507ex" role="img" focusable="false" viewBox="0 -666 1500 666" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: 0px;"><defs><path id="MJX-35-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path id="MJX-35-TEX-N-7E" d="M179 251Q164 251 151 245T131 234T111 215L97 227L83 238Q83 239 95 253T121 283T142 304Q165 318 187 318T253 300T320 282Q335 282 348 288T368 299T388 318L402 306L416 295Q375 236 344 222Q330 215 313 215Q292 215 248 233T179 251Z"></path><path id="MJX-35-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><use data-c="31" xlink:href="#MJX-35-TEX-N-31"></use></g><g data-mml-node="mtext" transform="translate(500,0)"><use data-c="7E" xlink:href="#MJX-35-TEX-N-7E"></use></g><g data-mml-node="mn" transform="translate(1000,0)"><use data-c="32" xlink:href="#MJX-35-TEX-N-32"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>1</mn><mtext>~</mtext><mn>2</mn></math></mjx-assistive-mml></mjx-container><script type="math/tex">1\textasciitilde 2</script></td><td style='text-align:left;' ><span>负责调查新技术、技术分享会、讲座和其他 IT 任务或活动</span></td></tr><tr><td style='text-align:center;' ><strong><code>COO</code></strong></td><td><span>运营</span></td><td><span>运营部</span></td><td><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="3.394ex" height="1.507ex" role="img" focusable="false" viewBox="0 -666 1500 666" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: 0px;"><defs><path id="MJX-35-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path id="MJX-35-TEX-N-7E" d="M179 251Q164 251 151 245T131 234T111 215L97 227L83 238Q83 239 95 253T121 283T142 304Q165 318 187 318T253 300T320 282Q335 282 348 288T368 299T388 318L402 306L416 295Q375 236 344 222Q330 215 313 215Q292 215 248 233T179 251Z"></path><path id="MJX-35-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><use data-c="31" xlink:href="#MJX-35-TEX-N-31"></use></g><g data-mml-node="mtext" transform="translate(500,0)"><use data-c="7E" xlink:href="#MJX-35-TEX-N-7E"></use></g><g data-mml-node="mn" transform="translate(1000,0)"><use data-c="32" xlink:href="#MJX-35-TEX-N-32"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>1</mn><mtext>~</mtext><mn>2</mn></math></mjx-assistive-mml></mjx-container><script type="math/tex">1\textasciitilde 2</script></td><td style='text-align:left;' ><span>领导运营部；负责各种 IT 技术活动的实施和组织开展事务</span></td></tr><tr><td style='text-align:center;' ><strong><code>CFO</code></strong></td><td><span>财务</span></td><td><span>运营部</span></td><td><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="3.394ex" height="1.507ex" role="img" focusable="false" viewBox="0 -666 1500 666" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: 0px;"><defs><path id="MJX-35-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path id="MJX-35-TEX-N-7E" d="M179 251Q164 251 151 245T131 234T111 215L97 227L83 238Q83 239 95 253T121 283T142 304Q165 318 187 318T253 300T320 282Q335 282 348 288T368 299T388 318L402 306L416 295Q375 236 344 222Q330 215 313 215Q292 215 248 233T179 251Z"></path><path id="MJX-35-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><use data-c="31" xlink:href="#MJX-35-TEX-N-31"></use></g><g data-mml-node="mtext" transform="translate(500,0)"><use data-c="7E" xlink:href="#MJX-35-TEX-N-7E"></use></g><g data-mml-node="mn" transform="translate(1000,0)"><use data-c="32" xlink:href="#MJX-35-TEX-N-32"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>1</mn><mtext>~</mtext><mn>2</mn></math></mjx-assistive-mml></mjx-container><script type="math/tex">1\textasciitilde 2</script></td><td style='text-align:left;' ><span>负责协会财务和固定资产、校资源的保管、申请和审计等</span></td></tr><tr><td style='text-align:center;' ><strong><code>CHO</code></strong></td><td><span>人资</span></td><td><span>运营部</span></td><td><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="3.394ex" height="1.507ex" role="img" focusable="false" viewBox="0 -666 1500 666" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: 0px;"><defs><path id="MJX-35-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path id="MJX-35-TEX-N-7E" d="M179 251Q164 251 151 245T131 234T111 215L97 227L83 238Q83 239 95 253T121 283T142 304Q165 318 187 318T253 300T320 282Q335 282 348 288T368 299T388 318L402 306L416 295Q375 236 344 222Q330 215 313 215Q292 215 248 233T179 251Z"></path><path id="MJX-35-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><use data-c="31" xlink:href="#MJX-35-TEX-N-31"></use></g><g data-mml-node="mtext" transform="translate(500,0)"><use data-c="7E" xlink:href="#MJX-35-TEX-N-7E"></use></g><g data-mml-node="mn" transform="translate(1000,0)"><use data-c="32" xlink:href="#MJX-35-TEX-N-32"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>1</mn><mtext>~</mtext><mn>2</mn></math></mjx-assistive-mml></mjx-container><script type="math/tex">1\textasciitilde 2</script></td><td style='text-align:left;' ><span>负责协会内所有人员信息管理、联系、记录奖惩和贡献等</span></td></tr><tr><td style='text-align:center;' ><strong><code>CMO</code></strong></td><td><span>市场</span></td><td><span>信宣部</span></td><td><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="3.394ex" height="1.507ex" role="img" focusable="false" viewBox="0 -666 1500 666" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: 0px;"><defs><path id="MJX-35-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path id="MJX-35-TEX-N-7E" d="M179 251Q164 251 151 245T131 234T111 215L97 227L83 238Q83 239 95 253T121 283T142 304Q165 318 187 318T253 300T320 282Q335 282 348 288T368 299T388 318L402 306L416 295Q375 236 344 222Q330 215 313 215Q292 215 248 233T179 251Z"></path><path id="MJX-35-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><use data-c="31" xlink:href="#MJX-35-TEX-N-31"></use></g><g data-mml-node="mtext" transform="translate(500,0)"><use data-c="7E" xlink:href="#MJX-35-TEX-N-7E"></use></g><g data-mml-node="mn" transform="translate(1000,0)"><use data-c="32" xlink:href="#MJX-35-TEX-N-32"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>1</mn><mtext>~</mtext><mn>2</mn></math></mjx-assistive-mml></mjx-container><script type="math/tex">1\textasciitilde 2</script></td><td style='text-align:left;' ><span>领导信宣部；负责协会招新、各种协会事宜的记录和宣传</span></td></tr><tr><td style='text-align:center;' ><strong><code>CDO</code></strong></td><td><span>设计</span></td><td><span>信宣部</span></td><td><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="3.394ex" height="1.507ex" role="img" focusable="false" viewBox="0 -666 1500 666" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: 0px;"><defs><path id="MJX-35-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path id="MJX-35-TEX-N-7E" d="M179 251Q164 251 151 245T131 234T111 215L97 227L83 238Q83 239 95 253T121 283T142 304Q165 318 187 318T253 300T320 282Q335 282 348 288T368 299T388 318L402 306L416 295Q375 236 344 222Q330 215 313 215Q292 215 248 233T179 251Z"></path><path id="MJX-35-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><use data-c="31" xlink:href="#MJX-35-TEX-N-31"></use></g><g data-mml-node="mtext" transform="translate(500,0)"><use data-c="7E" xlink:href="#MJX-35-TEX-N-7E"></use></g><g data-mml-node="mn" transform="translate(1000,0)"><use data-c="32" xlink:href="#MJX-35-TEX-N-32"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>1</mn><mtext>~</mtext><mn>2</mn></math></mjx-assistive-mml></mjx-container><script type="math/tex">1\textasciitilde 2</script></td><td style='text-align:left;' ><span>负责软协招新宣传物料设计、LOGO、活动海报、媒体等</span></td></tr></tbody></table></figure><p><span>其中，CTO 设正职一名、副职一名，其它职位一般不设副职。技术部、运营部和信宣部还需负责管理和培养部门内的实习工作人员，根据实际情况为实习工作人员安排职务和设置执行人员。</span></p><h3 id='第十三条-委员会的权利和义务'><span>第十三条 委员会的权利和义务</span></h3><p><span>委员会在会员代表大会的委托下代为行使以下权利和义务：</span></p><ol start='' ><li><span>组织会员代表大会；</span></li><li><span>考核和登记新会员；</span></li><li><span>执行本章程和会员代表大会决议；</span></li><li><span>决定协会的活动方针和任务；</span></li><li><span>决定其他重大事项。 </span></li></ol><h3 id='第十四条-实习工作人员'><span>第十四条 实习工作人员</span></h3><p><span>实习工作人员属于协会核心会员，不属于委员会。技术部、运营部和信宣部各包含若干实习工作人员，负责对应部门的工作事宜。</span></p><figure><table><thead><tr><th><span>部门名</span></th><th><span>职务名</span></th><th><span>人数</span></th><th><span>事务</span></th></tr></thead><tbody><tr><td><span>技术部</span></td><td><span>实习工作人员</span></td><td><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="3.394ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 1500 688" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.05ex;"><defs><path id="MJX-30-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path id="MJX-30-TEX-N-7E" d="M179 251Q164 251 151 245T131 234T111 215L97 227L83 238Q83 239 95 253T121 283T142 304Q165 318 187 318T253 300T320 282Q335 282 348 288T368 299T388 318L402 306L416 295Q375 236 344 222Q330 215 313 215Q292 215 248 233T179 251Z"></path><path id="MJX-30-TEX-N-35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><use data-c="32" xlink:href="#MJX-30-TEX-N-32"></use></g><g data-mml-node="mtext" transform="translate(500,0)"><use data-c="7E" xlink:href="#MJX-30-TEX-N-7E"></use></g><g data-mml-node="mn" transform="translate(1000,0)"><use data-c="35" xlink:href="#MJX-30-TEX-N-35"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>2</mn><mtext>~</mtext><mn>5</mn></math></mjx-assistive-mml></mjx-container><script type="math/tex">2\textasciitilde 5</script></td><td><span>好奇、探索、主动学习和完成任务</span></td></tr><tr><td><span>运营部</span></td><td><span>实习工作人员</span></td><td><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="3.394ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 1500 688" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.05ex;"><defs><path id="MJX-30-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path id="MJX-30-TEX-N-7E" d="M179 251Q164 251 151 245T131 234T111 215L97 227L83 238Q83 239 95 253T121 283T142 304Q165 318 187 318T253 300T320 282Q335 282 348 288T368 299T388 318L402 306L416 295Q375 236 344 222Q330 215 313 215Q292 215 248 233T179 251Z"></path><path id="MJX-30-TEX-N-35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><use data-c="32" xlink:href="#MJX-30-TEX-N-32"></use></g><g data-mml-node="mtext" transform="translate(500,0)"><use data-c="7E" xlink:href="#MJX-30-TEX-N-7E"></use></g><g data-mml-node="mn" transform="translate(1000,0)"><use data-c="35" xlink:href="#MJX-30-TEX-N-35"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>2</mn><mtext>~</mtext><mn>5</mn></math></mjx-assistive-mml></mjx-container><script type="math/tex">2\textasciitilde 5</script></td><td><span>好奇、探索、主动学习和完成任务</span></td></tr><tr><td><span>信宣部</span></td><td><span>实习工作人员</span></td><td><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="3.394ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 1500 688" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.05ex;"><defs><path id="MJX-30-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path id="MJX-30-TEX-N-7E" d="M179 251Q164 251 151 245T131 234T111 215L97 227L83 238Q83 239 95 253T121 283T142 304Q165 318 187 318T253 300T320 282Q335 282 348 288T368 299T388 318L402 306L416 295Q375 236 344 222Q330 215 313 215Q292 215 248 233T179 251Z"></path><path id="MJX-30-TEX-N-35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><use data-c="32" xlink:href="#MJX-30-TEX-N-32"></use></g><g data-mml-node="mtext" transform="translate(500,0)"><use data-c="7E" xlink:href="#MJX-30-TEX-N-7E"></use></g><g data-mml-node="mn" transform="translate(1000,0)"><use data-c="35" xlink:href="#MJX-30-TEX-N-35"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>2</mn><mtext>~</mtext><mn>5</mn></math></mjx-assistive-mml></mjx-container><script type="math/tex">2\textasciitilde 5</script></td><td><span>好奇、探索、主动学习和完成任务</span></td></tr></tbody></table></figure><h3 id='第十五条-协会下属组织'><span>第十五条 协会下属组织</span></h3><p><span>协会下属组织的总负责人是委员会的一部分，负责人属于核心会员，其余属于会员而不属于委员会。协会下属组织包括：香农先修班、椰风游戏开发社。协会下属组织内部自治，成员招募等事宜需由战略官监管。</span></p><figure><table><thead><tr><th style='text-align:left;' ><span>下属组织名</span></th><th style='text-align:left;' ><span>描述</span></th></tr></thead><tbody><tr><td style='text-align:left;' ><span>香农先修班</span></td><td style='text-align:left;' ><span>软件协会下属信息技术、计算机算法和竞赛研究班</span></td></tr><tr><td style='text-align:left;' ><span>椰风游戏开发社</span></td><td style='text-align:left;' ><span>软件协会下属的游戏、多媒体和交互技术兴趣社团</span></td></tr></tbody></table></figure><p><span>协会核心会员可以无条件参与所有下属组织。</span></p><h2 id='第四章-财务制度'><span>第四章 财务制度</span></h2><h3 id='第十六条-财务政策'><span>第十六条 财务政策</span></h3><ol start='' ><li><span>协会财务工作由委员会和运营部财务负责人(CFO)协调和负责，接受会员和学校上级单位的监督和质询； </span></li><li><span>相关负责人应当根据社团运营情况和学校相关规定，建立独立而透明的会计、审计制度；</span></li><li><span>财务工作应当完全透明，相关负责人有详尽记录财务使用情况并定期公开发表财务报告的义务； </span></li><li><span>对于社会捐款，捐款人有限制捐款用途的权利，有监督和质询捐款使用情况的权利。</span></li></ol><h3 id='第十七条-经费来源'><span>第十七条 经费来源</span></h3><p><span>协会的资金来源包括：</span></p><ol start='' ><li><span>校党委、团委和学院等上级部门提供的活动经费；</span></li><li><span>社团会员自筹的活动经费；</span></li><li><span>企业或其他机构赞助；</span></li><li><span>课程、讲座费用；</span></li><li><span>捐赠。</span></li></ol><p><span>协会不向会员收取任何形式的会费。</span></p><h3 id='第十八条-经费运用'><span>第十八条 经费运用</span></h3><p><span>协会的经费和捐款，除上级单位和捐款人特殊要求的，不得用于下列用途之外的其他用途：</span></p><ol start='' ><li><span>举办经委员会一致同意的社团活动；</span></li><li><span>协会网络服务器的硬件和软件维护；</span></li><li><span>购置供全体会员使用的福利设施。</span></li></ol><p><span>为方便协会活动经费和捐款的运作，委员会可以指定值得信任的个人或第三方机构代为保管经费。在保护相关人员的个人隐私的前提下，应当公开相关账户（包括银行账户、网上支付平台账户）的信息，以便监管和审查。</span></p><h3 id='第十九条-财务报告'><span>第十九条 财务报告</span></h3><p><span>协会委员会和财务负责人每学期应至少在协会社交群、官方网站等地方公开发布一次财务报告。协会财务工作必须透明，接受会员或学校上级单位监督及质询。协会财务负责人(CFO)对协会整体财务行为负责。</span></p><h2 id='第五章-协会章程'><span>第五章 协会章程</span></h2><h3 id='第二十条-协会章程修改'><span>第二十条 协会章程修改</span></h3><p><span>本章程的修改须经由会员代表大会 </span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="3.394ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 1500 1000" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.566ex;"><defs><path id="MJX-31-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path id="MJX-31-TEX-N-2F" d="M423 750Q432 750 438 744T444 730Q444 725 271 248T92 -240Q85 -250 75 -250Q68 -250 62 -245T56 -231Q56 -221 230 257T407 740Q411 750 423 750Z"></path><path id="MJX-31-TEX-N-33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><use data-c="32" xlink:href="#MJX-31-TEX-N-32"></use></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(500,0)"><g data-mml-node="mo"><use data-c="2F" xlink:href="#MJX-31-TEX-N-2F"></use></g></g><g data-mml-node="mn" transform="translate(1000,0)"><use data-c="33" xlink:href="#MJX-31-TEX-N-33"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>2</mn><mrow data-mjx-texclass="ORD"><mo>/</mo></mrow><mn>3</mn></math></mjx-assistive-mml></mjx-container><script type="math/tex">2/3</script><span> 多数表决通过，并由协会委员会执行生效。</span></p><h3 id='第二十一条-遵守协会章程'><span>第二十一条 遵守协会章程</span></h3><p><span>所有协会成员需要知悉本章程，并遵守章程规定。</span></p><h2 id='第六章-终止程序'><span>第六章 终止程序</span></h2><h3 id='第二十二条-终止条件'><span>第二十二条 终止条件</span></h3><p><span>协会运营出现严重困难时，委员会可以向会员代表大会提出终止协议并要求协会自行解散。经会员代表大会 </span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="3.394ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 1500 1000" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.566ex;"><defs><path id="MJX-32-TEX-N-36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z"></path><path id="MJX-32-TEX-N-2F" d="M423 750Q432 750 438 744T444 730Q444 725 271 248T92 -240Q85 -250 75 -250Q68 -250 62 -245T56 -231Q56 -221 230 257T407 740Q411 750 423 750Z"></path><path id="MJX-32-TEX-N-37" d="M55 458Q56 460 72 567L88 674Q88 676 108 676H128V672Q128 662 143 655T195 646T364 644H485V605L417 512Q408 500 387 472T360 435T339 403T319 367T305 330T292 284T284 230T278 162T275 80Q275 66 275 52T274 28V19Q270 2 255 -10T221 -22Q210 -22 200 -19T179 0T168 40Q168 198 265 368Q285 400 349 489L395 552H302Q128 552 119 546Q113 543 108 522T98 479L95 458V455H55V458Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><use data-c="36" xlink:href="#MJX-32-TEX-N-36"></use></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(500,0)"><g data-mml-node="mo"><use data-c="2F" xlink:href="#MJX-32-TEX-N-2F"></use></g></g><g data-mml-node="mn" transform="translate(1000,0)"><use data-c="37" xlink:href="#MJX-32-TEX-N-37"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>6</mn><mrow data-mjx-texclass="ORD"><mo>/</mo></mrow><mn>7</mn></math></mjx-assistive-mml></mjx-container><script type="math/tex">6/7</script><span> 多数表决通过和协会指导教师同意，并由校团委批准执行后，启动终止程序。终止程序由会员代表大会选举的特别委员会执行。</span></p><h3 id='第二十三条-终止后财产处理'><span>第二十三条 终止后财产处理</span></h3><p><span>协会终止运作后，将未使用的捐款退还捐款人。有归属的财产返还归属人，其余无归属的遗留财产由校团委或软件学院代为处理。</span></p><h2 id='第七章-附则'><span>第七章 附则</span></h2><h3 id='第二十四条-会员投稿'><span>第二十四条 会员投稿</span></h3><p><span>会员的投稿作品和对应成果完全属于会员本人所有，会员可以提交任何作品到委员会的运营部，协会将拥有按照会员意愿使用和发布的权利，并配合会员转载或公开发布作品。</span></p><h3 id='第二十五条-关于章程'><span>第二十五条 关于章程</span></h3><p><span>本章程解释权和修订权归华南师范大学软件协会会员代表大会所有。</span></p></div></div>
+</body>
+</html>
